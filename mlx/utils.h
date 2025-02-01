@@ -10,6 +10,9 @@
 #include "mlx/dtype.h"
 #include "mlx/stream.h"
 
+#define STRINGIFY(x) #x
+#define TOSTRING(x) STRINGIFY(x)
+
 namespace mlx::core {
 
 using StreamOrDevice = std::variant<std::monostate, Stream, Device>;
@@ -110,6 +113,10 @@ inline int next_power_of_2(int n) {
     return n;
   }
   return pow(2, std::ceil(std::log2(n)));
+}
+
+std::string version() {
+  return std::string(TOSTRING(MLX_VERSION));
 }
 
 namespace env {
